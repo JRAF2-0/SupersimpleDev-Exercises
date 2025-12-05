@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      function ProductDetails({ image, name, price, discountPrice }) {
+        return (
+          <>
+            <img src= {image} alt= {name} width = "150px" />
+            <div style = { {marginBottom: "50px"} }>
+              {discountPrice ? <del> {name} </del> : <p> {name} </p>}
+              <p>Price: ${price} </p>
+              {discountPrice && (
+                <p style={{ color: "red", fontWeight: "bold" }}>
+                  Discount price: ${discountPrice}
+                </p>
+              )}
+              <button>Add to cart</button>
+            </div>
+          </>
+        );
+      }
+      function App() {
+        const cottonSocksPrice = 10.9;
+        const tennisBallPrice = 6.0;
+        const plainTshirt = 7.99;
+        const discountPrice = 5.45;
+        return (
+          <>
+            <ProductDetails
+              image="Cotton socks.webp"
+              name="Cotton socks"
+              price={cottonSocksPrice.toFixed(2)}
+              discountPrice={discountPrice.toFixed(2)}
+            />
+            <ProductDetails
+              image="Tennis balls.webp"
+              name="Tennis balls"
+              price={tennisBallPrice.toFixed(2)}
+            />
+            <ProductDetails
+              image="WhiteTshirt.webp"
+              name="Plain T-Shirts"
+              price={plainTshirt.toFixed(2)}
+            />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
