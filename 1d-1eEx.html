@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1d-1e Exercise</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      //   const sock = 10;
+      //   const tShirts = 8;
+      //   const shipppingCost = 5;
+      //   const productCost = sock + (tShirts * 2);
+
+      //   const divEement =
+      //     <div>
+      //         <p>Product cost: ${productCost}</p>
+      //         <p>Shipping cost: ${shipppingCost}</p>
+      //         <p>Total cost: ${productCost + shipppingCost}</p>
+      //         <button>Place your order</button>
+      //     </div>;\
+      const date = dayjs().format("HH:mm:ss");
+      const dateToday = <p>Current time: {date}</p>;
+      const container = document.querySelector(".js-container");
+      const root = ReactDOM.createRoot(container);
+
+      setInterval(() => { 
+        const date = dayjs().format("HH:mm:ss");
+        const dateToday = <p>Current time: {date}</p>;
+        root.render(dateToday);
+      }, 1000);
+    </script>
+  </body>
+</html>
