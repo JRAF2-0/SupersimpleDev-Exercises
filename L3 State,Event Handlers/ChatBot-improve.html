@@ -22,16 +22,21 @@
       }
 
       function UserMessage({ message, sender }) {
+        const style = {
+          display: "flex",
+          alignItems: "center",
+          border: "1px solid black",
+        };
         return (
-          <div>
+          <div style={style}>
             {sender === "robot" && (
               <img
                 src="./profileIcon/botPic.webp"
                 alt="Robot Profile Picture"
                 width="50"
-              />
+                />
             )}
-            {message}
+            <p>{message}</p>{" "}
             {sender === "user" && (
               <img
                 src="./profileIcon/profilePicture.webp"
@@ -43,47 +48,63 @@
         );
       }
 
-      function App() {
+      function ChatMessages() {
         const chatmessages = [
           {
             message: "hello chat bot",
             sender: "user",
+            id: "1",
           },
           {
             message: "Hello! How can i help you?",
             sender: "robot",
+            id: "2",
           },
           {
             message: "can you get me today's date?",
             sender: "user",
+            id: "3",
           },
           {
             message: "Today is September 27",
             sender: "robot",
+            id: "4",
           },
           {
             message: "how about flip a coin",
             sender: "user",
+            id: "5",
           },
           {
             message: "Sure! You got tails",
             sender: "robot",
+            id: "6",
           },
         ];
+        function sendMessage() {
+          console.log("Clicked");
+        }
+        return (
+          <>
+            <button onClick={sendMessage}>Send Message</button>
+            {chatmessages.map((chatmessage) => {
+              return (
+                <UserMessage
+                  message={chatmessage.message}
+                  sender={chatmessage.sender}
+                  key={chatmessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
 
-        const chatMessagesComponents = chatmessages.map((chatmessage) => {
-          return (
-            <UserMessage
-              message={chatmessage.message}
-              sender={chatmessage.sender}
-            />
-          );
-        });
-
+      function App() {
         return (
           <>
             <ChatInput />
-            {chatMessagesComponents}
+            <ChatMessages />
           </>
         );
       }
